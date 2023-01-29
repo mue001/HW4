@@ -1,2 +1,2 @@
-# HW4 Track Spending Calories Activies
+# HW4 Track Spending Activity Calories
 Author: Hoa Vo, Misako Ueshima

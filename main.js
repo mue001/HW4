@@ -1,5 +1,5 @@
 // Global variables
-let optionOne = ["Sit Ups", "Push Ups", "Jump Rope"];
+let activityOptions = ["Sit Ups", "Push Ups", "Jump Rope"];
 let Workout = [];
 let activityNumber = 0;
 let WorkOutRecord = function(activityName, activityDuration, caloriesSpent){
@@ -8,10 +8,8 @@ let WorkOutRecord = function(activityName, activityDuration, caloriesSpent){
     this.duration = activityDuration;
     this.calories = caloriesSpent;
 };
-let maxActivity = "";
-let maxCalories = 0;
 
-//console.log(document.getElementById("minutes").value);
+let maxCalories = 0;
 
 
 // page load event 
@@ -20,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // Create activity radio buttons
     let listOneContaier = document.getElementById('list-activities');
     let list1 = "list-one";
-    createRadioButton(optionOne, listOneContaier, list1);
+    createRadioButton(activityOptions, listOneContaier, list1);
     
 
     //function to calculate calories and add new array items 
@@ -28,26 +26,34 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let duration = parseInt(document.getElementById("minutes").value);
         if(document.querySelector('input[id="Sit Ups"]:checked')){
             calories = duration*10;
-            activity = optionOne[0];
+            activity = activityOptions[0];
         } else if(document.querySelector('input[id="Push Ups"]:checked')){
             calories = duration*15;
-            activity = optionOne[1];
+            activity = activityOptions[1];
         } else if(document.querySelector('input[id="Jump Rope"]:checked')){
             calories = duration*18;
-            activity = optionOne[2];
+            activity = activityOptions[2];
         }
-        Workout.push(new WorkOutRecord(activity, duration, calories));
-        maxCalories = checkMaxCalories (calories, maxCalories);
-        console.log(activity, duration, calories);
-        
-        clearForm(list1);
 
+        console.log("act value : " + activity);
+
+        // Only push an object into array if the duration is a number - if the input is empty - do nothing  
+        if(!isNaN(duration) && activity !== undefined ){
+            Workout.push(new WorkOutRecord(activity, duration, calories));
+            maxCalories = findMaxCalories (calories, maxCalories);
+            console.log(activity, duration, calories);           
+            clearForm(list1);
+        }   
+
+        document.getElementById("most-calories").addEventListener("click", mostBurnedActivites);
+        document.getElementById("allActivies").addEventListener("click", displayAllActivities);
+        
     });
 
     // Helper funtions 
 
-    //Check the maxCalories and maxActivity
-    function checkMaxCalories(calories, maxCalories){
+    //Find the maxCalories
+    function findMaxCalories(calories, maxCalories){
         if(calories >= maxCalories){
             return calories;
         }
@@ -55,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     
     //Display the activity that burns the most calories
-    document.getElementById("most-calories").addEventListener("click", function(){
+    function mostBurnedActivites() {
         //document.getElementById("list-most-activities").textContent= maxActivity + " " + maxCalories;
          document.getElementById("list-most-activities").textContent = "";
          let mostAcitivities = document.getElementById("list-most-activities");
@@ -66,17 +72,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 mostAcitivities.append(displayActivity);
          }
         }
-    });
+    };
         
         //Display all activities
-    document.getElementById("allActivies").addEventListener("click", function(){
+    function displayAllActivities (){
         document.getElementById("all-activities-container").textContent = "";
         for (i=0; i<Workout.length; i++){
             let list = document.createElement("li");
             list.textContent = `Activity ${Workout[i].activityID}: ${Workout[i].activity} ${Workout[i].duration} minutes ${Workout[i].calories} calories`;
             document.getElementById("all-activities-container").append(list);
         }
-    });
+    };
 
 });
 
@@ -86,6 +92,8 @@ function clearForm(listName){
     for(const btn of  activityList){
         if(btn.checked){
            btn.checked = false;
+           btn.value = "";
+           console.log("Reset value : " + btn.value);
         }
       }
       document.getElementById("minutes").value = '';
