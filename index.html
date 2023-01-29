@@ -12,28 +12,32 @@
     <div class="main-container">
         <div class="title">
             <h1>Track Activity Calories</h1>
-            <h2>Your activity and minutes you worked on it</h2>
+            <h2>Your activity and time you worked on it</h2>
         </div>
 
         <div class="container">
-            <div class="options"></div>
             <div class="list-activities" id="list-activities"></div>
-            <label for="minutes">Time spend (minutes):</label>
-            <input type="number" val="minutes"  id="minutes" class="minutes" name="minutes" />
-        </div>         
-        <div class="button-container">
+            <div class="input-box">
+                <label for="minutes">Time spend (minutes):</label>
+                <input type="number" val="minutes"  id="minutes" class="minutes" name="minutes" />
+            </div>
+            <div class="button-container">
             <button type="button" id="add-button" >Add Activity</button>
-        </div>
+            </div>
+        </div>         
 
-        <div class="most-calories-container">
-            <button type="button" id="most-calories" >Show most calories activity</button>
-        </div>
-        <div class="list-most-activities" id="list-most-activities"></div>
-        
-        <div class="listActivties">
-            <button type="button" id="allActivies" >Show Activities</button>
-        </div>
-        <div class="all-activities-container" id="all-activities-container"></div>
+        <div class="added-activities-container">
+            <div class="listActivties">
+                <button type="button" id="allActivies" >Show Activities</button>
+                <div class="all-activities-container" id="all-activities-container"></div>
+            </div>
+
+            <div class="most-calories-container">
+                <button type="button" id="most-calories" >Show Most Calories Activity</button>
+                <div class="list-most-activities" id="list-most-activities"></div>
+            </div>
+                
+        </div>       
     </div>
 </div>
 

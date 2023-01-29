@@ -8,23 +8,23 @@ h1 {
     font-family: 'Julius Sans One', sans-serif;
     font-weight: bold;
 }
-.outer-container{
+.outer-container, .list-activities, .added-activities-container {
     display: flex;
     justify-content: center;
 }
 
 .main-container {
-    width: 60%;
+    width: 80%;
     background-color: lightyellow;
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
 }
 
 button {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     padding: 0.5rem;
     box-shadow: 0 5px goldenrod;
-    background-color: gray;
+    background-color:darkgray;
     color: white;
 }
 
@@ -37,18 +37,51 @@ button:active {
     background-color: coral;
 }
 .activities-container {
-    margin-top: 1rem;
-    font-size: 25px;
+    margin-top: 0.5rem;
+    font-size: 10px;
     font-weight: bold;
     color: orange;
 }
 
 .container {
-    background: lightpink;
-    padding: 2rem;
+    background: lightgrey;
+    padding: 0.5rem;
+    color: white;
 }
 
 .number {
     padding: 0.5rem;
     font-size: 15px;
 }
+.button-of-list-one {
+    background-color: mediumslateblue;
+    margin: 1rem;
+    padding: 4%;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    flex:1; /* equal width of items */
+  }
+
+  .most-calories-container, .listActivties {
+
+    background-color: lightgray;
+    margin: 20px 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex:1; /* equal width of items */
+
+  }
+
+  .added-activities-container {
+    background-color: mediumslateblue;
+    color: white;
+  }
+
+  li {
+      text-align: left;
+      background: mediumslateblue;
+      padding: 10px;
+      margin-top: 5px;
+  }

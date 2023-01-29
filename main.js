@@ -1,10 +1,12 @@
 // Global variables
 let optionOne = ["Sit Ups", "Push Ups", "Jump Rope"];
 let Workout = [];
+let activityNumber = 0;
 let WorkOutRecord = function(activityName, activityDuration, caloriesSpent){
-  this.activity = activityName;
-  this.duration = activityDuration;
-  this.calories = caloriesSpent;
+    this.activityID = ++activityNumber;
+    this.activity = activityName;
+    this.duration = activityDuration;
+    this.calories = caloriesSpent;
 };
 let maxActivity = "";
 let maxCalories = 0;
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             activity = optionOne[2];
         }
         Workout.push(new WorkOutRecord(activity, duration, calories));
-        checkMaxCalories (calories);
+        maxCalories = checkMaxCalories (calories, maxCalories);
         console.log(activity, duration, calories);
         
         clearForm(list1);
@@ -45,15 +47,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // Helper funtions 
 
     //Check the maxCalories and maxActivity
-    function checkMaxCalories(caloriesSpend){
-        for(let x=0; x < Workout.length; x++){ 
-        console.log("Workout[x].activity is" + Workout[x].activity)
-        if(Workout[x].calories >= caloriesSpend){
-            //maxActivity = Workout[x].activity, maxCalories = Workout[x].calories;
-            maxCalories = Workout[x].calories;
-        } //else{
-            //maxActivity =pActivity, maxCalories = pCalories;
-        //}
+    function checkMaxCalories(calories, maxCalories){
+        if(calories >= maxCalories){
+            return calories;
         }
     }; 
 
@@ -66,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
          for (act of Workout ){
              if (act.calories === maxCalories ){
                 let displayActivity = document.createElement("li");
-                displayActivity.textContent = act.activity + " " + act.calories; 
+                displayActivity.textContent = `Activity ${act.activityID}: ${act.activity} ${act.calories} calories`; 
                 mostAcitivities.append(displayActivity);
          }
         }
@@ -77,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("all-activities-container").textContent = "";
         for (i=0; i<Workout.length; i++){
             let list = document.createElement("li");
-            list.textContent = Workout[i].activity + " " + Workout[i].duration + " minutes " + Workout[i].calories + " calories";
+            list.textContent = `Activity ${Workout[i].activityID}: ${Workout[i].activity} ${Workout[i].duration} minutes ${Workout[i].calories} calories`;
             document.getElementById("all-activities-container").append(list);
         }
     });
