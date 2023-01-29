@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
             maxCalories = findMaxCalories (calories, maxCalories);
             console.log(activity, duration, calories);           
             clearForm(list1);
+            //or can use reset form built-in function
+            //document.getElementById("activity-form").reset();
+            
         }   
 
         document.getElementById("most-calories").addEventListener("click", mostBurnedActivites);
@@ -89,13 +92,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 function clearForm(listName){
     let activityList = document.querySelectorAll(`input[name="${listName}"]`);
-    for(const btn of  activityList){
+/*     for(const btn of  activityList){
         if(btn.checked){
            btn.checked = false;
            btn.value = "";
            console.log("Reset value : " + btn.value);
         }
-      }
+      } */
       document.getElementById("minutes").value = '';
     
 };
